@@ -2,6 +2,7 @@ package coding.database.coviddb;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
@@ -105,31 +106,24 @@ public class CovidDBInsert {
 		
 			}
 		
-		public List<Hospital> listSelect(
+		public void listSelect(
 				String sidoCdNm,
-				String sgguCdNm,
-				String rprtWorpClicFndtTgtYn,
-				String ratPsblYn,
-				String pcrPsblYn
+				String sgguCdNm
 				) {
 			try {
 				Connection conn = DriverManager.getConnection
 						   ("jdbc:oracle:thin:@localhost:1521:xe","SCOTT","TIGER");
 				System.out.println("DB연결완료");
-				String sql = "SELECT * FROM covid WHERE "+
-				"sidoCdNm=? AND sgguCdNm=?  AND ratPsblYn=? AND pcrPsblYn=? AND "+
-				"rprtWorpClicFndtTgtYn=?";
+				String sql = "SELECT * FROM covid WHERE sidoCdNm=? AND sgguCdNm=?";
 				PreparedStatement pstmt= conn.prepareStatement(sql);
 				pstmt.setString(1,sidoCdNm);
 				pstmt.setString(2,sgguCdNm);
-				pstmt.setString(3,ratPsblYn);
-				pstmt.setString(4,pcrPsblYn);
-				pstmt.setString(5,rprtWorpClicFndtTgtYn);
-				ResultSet rs = pstmt.executeQuery();
-				
+				ResultSet rs =pstmt.executeQuery(); 
 				//자기 세상의 자바 세상의 테이블로 만드는 것 = 모델링
-				List<Hospital> hospitals=new ArrayList<>();
+
+				List<Hospital> hosp=new ArrayList<>();
 				while (rs.next()) {
+					
 					Hospital hos =new Hospital(
 							rs.getString("yadmnm"),
 							rs.getString("addr"),
@@ -139,18 +133,19 @@ public class CovidDBInsert {
 							rs.getString("pcrpsblyn"),
 							rs.getString("mgtstadd")
 							); // - > 데이터 베이스의 resultdata 를 java로 파싱
-					hospitals.add(hos);
+					hosp.add(hos);
 				}
+				for(Hospital h : hosp) {
+					System.out.println(h);
+				}
+
 				System.out.println("완료");
-				
-				return hospitals;
 
 
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-			return null; 	
 		}
 		
 		

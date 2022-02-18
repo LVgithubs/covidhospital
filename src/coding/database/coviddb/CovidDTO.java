@@ -122,6 +122,8 @@ public class CovidDTO {
 	                	private float XPosWgs84;//세계 지구 X좌표
 	                	private float YPosWgs84;//세계 지구 Y좌표
 	                	private String ykihoEnc;//암호화된 요양기호
+	                	
+	                	
 						public String getYadmNm() {
 							return yadmNm;
 						}

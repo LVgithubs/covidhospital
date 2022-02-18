@@ -3,7 +3,7 @@ package coding.database.coviddb;
 public class Hospital {
 	
 
-	public Hospital(String yadmNm, String rprtWorpClicFndtTgtYn, String addr, String telno, String ratPsblYn,
+	public Hospital(String yadmNm, String addr, String telno, String rprtWorpClicFndtTgtYn, String ratPsblYn,
 			String pcrPsblYn, String mgtStaDd) {
 		super();
 		this.yadmNm = yadmNm;
@@ -41,13 +41,13 @@ public class Hospital {
 	@Override
 	public String toString() {
 		return 
-		"-요양기관 이름 이름 :" + yadmNm +
-		" 요양 기관 주소 :" + addr 
-		+ " 전화번호 : " + telno
-		+ " RAT(신속 항원 검사) 가능 여부 : " + stringYN(ratPsblYn) +
-		" 호흡기 전담 클리닉 여부 : "+ stringYN(rprtWorpClicFndtTgtYn)+
-		" PCR 가능 여부" + stringYN(pcrPsblYn) + 
-		" 병원 개원 날짜 - " + mgtStaDd + "-";
+		"-[요양기관 이름 :" + yadmNm +"]"+
+		"-[ 요양 기관 주소 : " + addr + "]"+
+		"-[ 전화번호 : " + telno + "]"+
+		"-[ RAT(신속 항원 검사) 가능 여부 : " + stringYN(ratPsblYn) + "]"+
+		"-[ 호흡기 전담 클리닉 여부 : "+ stringYN(rprtWorpClicFndtTgtYn)+ "]"+
+		"-[ PCR 가능 여부 : " + stringYN(pcrPsblYn) + "]"+ 
+		"-[ 병원 개원 날짜 - " + mgtStaDd + "]-";
 	}
 	public String getYadmNm() {
 		return yadmNm;
